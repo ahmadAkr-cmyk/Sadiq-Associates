@@ -3,20 +3,25 @@ import hero2 from "@/assets/hero-2.png";
 import hero3 from "@/assets/hero-3.png";
 import hero1Financial from "@/assets/hero-1-financial.png";
 import aboutOffice from "@/assets/about-office.png";
+import founderImage from "@/assets/founder.png";
 import cta from "@/assets/cta.jpg";
 import about from "@/assets/about.jpg";
-import formation from "@/assets/svc-formation.jpg";
 import audit from "@/assets/svc-audit.jpg";
 import accounting from "@/assets/svc-accounting.jpg";
 import tax from "@/assets/svc-tax.jpg";
 import compliance from "@/assets/svc-compliance.jpg";
 import financial from "@/assets/svc-financial.jpg";
-import management from "@/assets/svc-management.jpg";
 import it from "@/assets/svc-it.jpg";
-import advisory from "@/assets/svc-advisory.jpg";
 import extra1 from "@/assets/extra-1.jpg";
 import extra2 from "@/assets/extra-2.jpg";
 import extra3 from "@/assets/extra-3.jpg";
+import corporateBusinessAdvisory from "@/assets/corporate-advisory.png";
+import corporateAdvisoryMeeting from "@/assets/corporate-meeting.png";
+import corporateServicesCollage from "@/assets/corporate-services-collage.png";
+
+const advisory = corporateBusinessAdvisory;
+const formation = corporateServicesCollage;
+const management = corporateAdvisoryMeeting;
 import {
   FaBuildingColumns,
   FaShieldHalved,
@@ -30,7 +35,32 @@ import {
 } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 
-export const images = { hero1, hero2, hero3, hero1Financial, aboutOffice, cta, about, formation, audit, accounting, tax, compliance, financial, management, it, advisory, extra1, extra2, extra3, consulting: about };
+export const images = {
+  hero1,
+  hero2,
+  hero3,
+  hero1Financial,
+  aboutOffice,
+  cta,
+  about,
+  formation: corporateServicesCollage,
+  audit,
+  accounting,
+  tax,
+  compliance,
+  financial,
+  management: corporateAdvisoryMeeting,
+  it,
+  advisory: corporateBusinessAdvisory,
+  extra1,
+  extra2,
+  extra3,
+  consulting: corporateAdvisoryMeeting,
+  founder: founderImage,
+  corporateBusinessAdvisory,
+  corporateAdvisoryMeeting,
+  corporateServicesCollage,
+};
 
 export const siteConfig = {
   name: "Sadiq Associates",
@@ -47,7 +77,7 @@ export const siteConfig = {
   whatsapp: "https://wa.me/923154603790",
   mapEmbed: "https://www.google.com/maps?q=Sabzazar+Plaza,+Sabzazar,+Lahore&output=embed",
   // TODO(owner): replace with real office hours
-  officeHours: "Mon – Sat, 10:00 AM – 6:00 PM (to be confirmed)",
+  officeHours: "Mon – Sat, 10:00 AM – 6:00 PM",
   // TODO(owner): add real social profile links (leave "" to hide)
   social: { facebook: "", linkedin: "", instagram: "" },
   // TODO(owner): replace these placeholder figures with real numbers
@@ -240,7 +270,7 @@ export const services: Service[] = [
       "Professional advice that helps businesses understand commercial agreements, regulatory responsibilities and important corporate matters.",
     icon: FaScaleBalanced,
     image: advisory,
-    gallery: [advisory, accounting, extra3],
+    gallery: [advisory, corporateAdvisoryMeeting, corporateServicesCollage],
     includes: [
       "Financial contract reviews",
       "Corporate advisory services",

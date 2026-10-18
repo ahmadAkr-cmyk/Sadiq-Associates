@@ -62,8 +62,7 @@ function Hero() {
         <AnimatePresence mode="wait">
           <motion.div key={i} className="max-w-2xl" initial="h" animate="s" exit="h" variants={{ s: { transition: { staggerChildren: 0.12 } } }}>
             {[
-              <span key="b" className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-navy-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md"><FaAward className="h-3.5 w-3.5" /> Chartered Firm</span>,
-              <h1 key="t" className="mt-6 text-5xl font-semibold leading-[1.05] text-navy-foreground md:text-7xl">{s.title}</h1>,
+              <h1 key="t" className="text-5xl font-semibold leading-[1.05] text-navy-foreground md:text-7xl">{s.title}</h1>,
               <p key="p" className="mt-6 max-w-xl text-lg text-navy-foreground/80">{s.text}</p>,
               <div key="c" className="mt-9"><Button asChild variant="gold" size="xl"><Link to={s.cta.to}>{s.cta.label} <FaArrowRight className="h-3.5 w-3.5" /></Link></Button></div>,
             ].map((el, k) => (

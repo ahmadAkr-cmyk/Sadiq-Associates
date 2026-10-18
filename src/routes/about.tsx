@@ -76,9 +76,13 @@ function AboutPage() {
       <section className="py-24">
         <div className="container-x grid items-center gap-14 lg:grid-cols-[380px_1fr]">
           <Reveal>
-            {/* TODO(owner): replace with a real portrait of Muhammad Sadiq */}
-            <div className="flex aspect-[4/5] items-center justify-center rounded-3xl bg-navy-gradient shadow-lift">
-              <FaUserTie className="h-32 w-32 text-navy-foreground/25" />
+            <div className="aspect-[4/5] overflow-hidden rounded-3xl shadow-lift border border-border/50">
+              <img
+                src={images.founder}
+                alt="Sadiq Associates – Chartered Firm"
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
             </div>
           </Reveal>
           <Reveal delay={0.1}>

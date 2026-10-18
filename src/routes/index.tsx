@@ -2,10 +2,23 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  ArrowRight, Award, Briefcase, ChevronLeft, ChevronRight, Facebook, HeartHandshake, Layers, Linkedin, Phone, Play, Receipt, Scale, Smile, Sparkles, Target, Users, UserRound, X,
-} from "lucide-react";
+  FaArrowRight,
+  FaAward,
+  FaBriefcase,
+  FaBuilding,
+  FaBullseye,
+  FaBoxesStacked,
+  FaChevronLeft,
+  FaChevronRight,
+  FaFileInvoiceDollar,
+  FaHandshake,
+  FaPhone,
+  FaScaleBalanced,
+  FaUsers,
+  FaUserTie,
+} from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
-import { images, pageTitle, services, siteConfig } from "@/config/siteConfig";
+import { images, pageTitle, siteConfig } from "@/config/siteConfig";
 import { IconBadge, Reveal, SectionHeading } from "@/components/site/Reveal";
 import { CheckItem, Counter, CtaBanner, MapEmbed, ServicesGrid } from "@/components/site/Blocks";
 import { ContactForm } from "@/components/site/ContactForm";
@@ -25,7 +38,7 @@ export const Route = createFileRoute("/")({
 });
 
 const slides = [
-  { img: images.hero1, title: "Trusted Financial Guidance for Growing Businesses", text: "Audit, accounting, tax and advisory support from a Chartered Firm that treats your business like its own.", cta: { label: "Book a Consultation", to: "/contact" } },
+  { img: images.aboutOffice, title: "Trusted Financial Guidance for Growing Businesses", text: "Audit, accounting, tax and advisory support from a Chartered Firm that treats your business like its own.", cta: { label: "Book a Consultation", to: "/contact" } },
   { img: images.hero2, title: "Accurate Accounts. Confident Decisions.", text: "Clear, up-to-date financial reporting that shows exactly how your business is performing.", cta: { label: "Explore Services", to: "/services" } },
   { img: images.hero3, title: "Compliance and Tax, Handled with Care", text: "Practical income tax, sales tax and compliance support for individuals and organisations across Pakistan.", cta: { label: "About Sadiq Associates", to: "/about" } },
 ] as const;
@@ -49,10 +62,10 @@ function Hero() {
         <AnimatePresence mode="wait">
           <motion.div key={i} className="max-w-2xl" initial="h" animate="s" exit="h" variants={{ s: { transition: { staggerChildren: 0.12 } } }}>
             {[
-              <span key="b" className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-navy-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md"><Award className="h-4 w-4" /> Chartered Firm</span>,
+              <span key="b" className="inline-flex items-center gap-2 rounded-full border border-gold/50 bg-navy-foreground/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md"><FaAward className="h-3.5 w-3.5" /> Chartered Firm</span>,
               <h1 key="t" className="mt-6 text-5xl font-semibold leading-[1.05] text-navy-foreground md:text-7xl">{s.title}</h1>,
               <p key="p" className="mt-6 max-w-xl text-lg text-navy-foreground/80">{s.text}</p>,
-              <div key="c" className="mt-9"><Button asChild variant="gold" size="xl"><Link to={s.cta.to}>{s.cta.label} <ArrowRight /></Link></Button></div>,
+              <div key="c" className="mt-9"><Button asChild variant="gold" size="xl"><Link to={s.cta.to}>{s.cta.label} <FaArrowRight className="h-3.5 w-3.5" /></Link></Button></div>,
             ].map((el, k) => (
               <motion.div key={k} variants={{ h: { opacity: 0, y: 30 }, s: { opacity: 1, y: 0, transition: { duration: 0.7 } } }}>{el}</motion.div>
             ))}
@@ -60,8 +73,8 @@ function Hero() {
         </AnimatePresence>
       </div>
       <div className="absolute bottom-24 right-6 flex gap-2 md:right-10">
-        <button aria-label="Previous slide" onClick={() => setI((i - 1 + slides.length) % slides.length)} className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-foreground/30 text-navy-foreground backdrop-blur-md hover:bg-gold hover:text-gold-foreground"><ChevronLeft className="h-5 w-5" /></button>
-        <button aria-label="Next slide" onClick={() => setI((i + 1) % slides.length)} className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-foreground/30 text-navy-foreground backdrop-blur-md hover:bg-gold hover:text-gold-foreground"><ChevronRight className="h-5 w-5" /></button>
+        <button aria-label="Previous slide" onClick={() => setI((i - 1 + slides.length) % slides.length)} className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-foreground/30 text-navy-foreground backdrop-blur-md hover:bg-gold hover:text-gold-foreground"><FaChevronLeft className="h-4 w-4" /></button>
+        <button aria-label="Next slide" onClick={() => setI((i + 1) % slides.length)} className="flex h-11 w-11 items-center justify-center rounded-full border border-navy-foreground/30 text-navy-foreground backdrop-blur-md hover:bg-gold hover:text-gold-foreground"><FaChevronRight className="h-4 w-4" /></button>
       </div>
       <div className="absolute bottom-28 left-1/2 flex -translate-x-1/2 gap-2">
         {slides.map((_, k) => (
@@ -72,28 +85,7 @@ function Hero() {
   );
 }
 
-function QuickStrip() {
-  return (
-    <section className="relative z-10 -mt-20">
-      <div className="container-x">
-        <div className="flex snap-x gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-9 lg:overflow-visible">
-          {services.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 0.05} className="min-w-[200px] snap-start lg:min-w-0">
-              <Link to="/services/$slug" params={{ slug: s.slug }} className="group flex h-full flex-col items-center card-premium card-hover p-6 text-center">
-                <IconBadge icon={s.icon} size="sm" />
-                <h3 className="mt-3 font-sans text-[0.8rem] font-bold leading-snug text-navy">{s.title}</h3>
-                <p className="mt-1.5 text-[0.72rem] leading-snug text-muted-foreground">{s.short}</p>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function About() {
-  const [video, setVideo] = useState(false);
   return (
     <section className="py-24">
       <div className="container-x grid items-center gap-16 lg:grid-cols-2">
@@ -103,7 +95,7 @@ function About() {
             {["Accurate Financial Reporting", "Professional Tax Guidance", "Audit & Compliance", "Business-Focused Advice"].map((t, i) => <CheckItem key={t} i={i}>{t}</CheckItem>)}
           </div>
           <Reveal delay={0.2} className="mt-10 flex items-center gap-5 rounded-2xl bg-navy-gradient p-6 shadow-lift">
-            <span className="animate-pulse-ring flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gold text-gold-foreground"><Phone className="h-6 w-6" /></span>
+            <span className="animate-pulse-ring flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gold text-gold-foreground"><FaPhone className="h-5 w-5" /></span>
             <div>
               <p className="text-sm text-navy-foreground/75">Need professional financial guidance?</p>
               <a href={`tel:${siteConfig.phones[0]!.tel}`} className="font-serif text-3xl font-semibold text-navy-foreground hover:text-gold">{siteConfig.phones[0]!.label}</a>
@@ -111,13 +103,8 @@ function About() {
           </Reveal>
         </div>
         <Reveal delay={0.1} className="relative">
-          <div className="absolute -bottom-5 -right-5 h-full w-full rounded-3xl border-2 border-gold" />
           <div className="relative overflow-hidden rounded-3xl shadow-lift">
-            <img src={images.advisory} alt="A Sadiq Associates advisor meeting a client" loading="lazy" className="aspect-[4/5] w-full object-cover md:aspect-[5/5]" width={1024} height={768} />
-            <button onClick={() => setVideo(true)} aria-label="Play introduction video" className="absolute bottom-6 left-6 flex items-center gap-3 rounded-full bg-card/90 py-2 pl-2 pr-5 text-sm font-semibold text-navy backdrop-blur">
-              <span className="animate-pulse-ring flex h-10 w-10 items-center justify-center rounded-full bg-gold text-gold-foreground"><Play className="h-4 w-4 fill-current" /></span>
-              Watch introduction
-            </button>
+            <img src={images.hero1Financial} alt="Sadiq Associates financial advisory" loading="lazy" className="aspect-[4/5] w-full object-cover object-center md:aspect-[5/5]" width={1024} height={768} />
           </div>
           <div className="absolute -left-4 top-8 rounded-2xl bg-card px-5 py-4 shadow-lift md:-left-8">
             <p className="eyebrow">Sadiq Associates</p>
@@ -125,25 +112,12 @@ function About() {
           </div>
         </Reveal>
       </div>
-      <AnimatePresence>
-        {video && (
-          <motion.div className="fixed inset-0 z-[80] flex items-center justify-center bg-navy-deep/85 p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setVideo(false)}>
-            <div className="relative w-full max-w-3xl" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setVideo(false)} aria-label="Close video" className="absolute -top-12 right-0 text-navy-foreground"><X className="h-8 w-8" /></button>
-              {/* TODO(owner): replace with the firm's own video */}
-              <div className="flex aspect-video items-center justify-center rounded-2xl bg-navy text-center text-navy-foreground/80">
-                <p className="px-6">Introduction video coming soon.</p>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
 
 function Stats() {
-  const icons = [Award, Smile, Layers];
+  const icons = [FaAward, FaUsers, FaBuilding];
   return (
     <section className="relative overflow-hidden bg-navy-gradient py-20">
       <div className="container-x grid gap-10 text-center md:grid-cols-3">
@@ -164,9 +138,9 @@ function Stats() {
 
 function Featured() {
   const items = [
-    { icon: Scale, title: "Corporate & Business Advisory", text: "Advice on agreements, company law and regulation so you can act with certainty.", slug: "corporate-business-advisory" },
-    { icon: Briefcase, title: "Management Consultancy", text: "Stronger systems, policies and controls that make your organisation run better.", slug: "management-consultancy" },
-    { icon: Receipt, title: "Tax Consultancy", text: "Income and sales tax planning, filing and representation handled properly.", slug: "tax-consultancy" },
+    { icon: FaScaleBalanced, title: "Corporate & Business Advisory", text: "Advice on agreements, company law and regulation so you can act with certainty.", slug: "corporate-business-advisory" },
+    { icon: FaBriefcase, title: "Management Consultancy", text: "Stronger systems, policies and controls that make your organisation run better.", slug: "management-consultancy" },
+    { icon: FaFileInvoiceDollar, title: "Tax Consultancy", text: "Income and sales tax planning, filing and representation handled properly.", slug: "tax-consultancy" },
   ];
   return (
     <section className="pb-8">
@@ -177,7 +151,7 @@ function Featured() {
               <IconBadge icon={it.icon} size="lg"  />
               <h3 className={`mt-6 text-3xl font-semibold text-navy`}>{it.title}</h3>
               <p className={`mt-3 text-sm leading-relaxed text-muted-foreground`}>{it.text}</p>
-              <span className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy`}>Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-gold" /></span>
+              <span className={`mt-6 inline-flex items-center gap-2 text-sm font-semibold text-navy`}>Learn more <FaArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 text-gold" /></span>
             </Link>
           </Reveal>
         ))}
@@ -202,35 +176,10 @@ export function WhyChoose({ items }: { items: { icon: React.ComponentType<{ clas
   );
 }
 
-export function Team() {
-  return (
-    <div className="mt-14 grid gap-8 md:grid-cols-3">
-      {siteConfig.team.map((m, i) => (
-        <Reveal key={i} delay={i * 0.1}>
-          <div className={`group overflow-hidden card-premium card-hover ${m.placeholder ? "opacity-80" : ""}`}>
-            {/* TODO(owner): replace with a real portrait photo */}
-            <div className="relative flex aspect-[4/5] items-center justify-center bg-navy-gradient">
-              <UserRound className="h-28 w-28 text-navy-foreground/25" />
-              <div className="absolute inset-x-0 bottom-0 flex justify-center gap-2 pb-5 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                {[Linkedin, Facebook].map((I, k) => <span key={k} className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-gold-foreground"><I className="h-4 w-4" /></span>)}
-              </div>
-            </div>
-            <div className="p-6 text-center">
-              <h3 className="text-2xl font-semibold text-navy">{m.name}</h3>
-              <p className="mt-1 text-sm text-gold">{m.role}</p>
-            </div>
-          </div>
-        </Reveal>
-      ))}
-    </div>
-  );
-}
-
 function Home() {
   return (
     <>
       <Hero />
-      <QuickStrip />
       <About />
       <Stats />
       <section className="pt-24"><div className="container-x"><SectionHeading eyebrow="What We Do Best" title="Featured Services" /></div></section>
@@ -245,17 +194,11 @@ function Home() {
         <div className="container-x">
           <SectionHeading eyebrow="Why Choose Us" title="A Firm You Can Rely On" />
           <WhyChoose items={[
-            { icon: Users, title: "Experienced Team", text: "Qualified professionals who understand local regulation and real business needs." },
-            { icon: HeartHandshake, title: "Client-Focused Service", text: "Clear communication and responsive support at every step." },
-            { icon: Sparkles, title: "Complete Business Support", text: "Audit, accounting, tax, compliance and advisory in one place." },
-            { icon: Target, title: "Personalised Approach", text: "Advice shaped around your goals, size and industry." },
+            { icon: FaUserTie, title: "Experienced Team", text: "Qualified professionals who understand local regulation and real business needs." },
+            { icon: FaHandshake, title: "Client-Focused Service", text: "Clear communication and responsive support at every step." },
+            { icon: FaBoxesStacked, title: "Complete Business Support", text: "Audit, accounting, tax, compliance and advisory in one place." },
+            { icon: FaBullseye, title: "Personalised Approach", text: "Advice shaped around your goals, size and industry." },
           ]} />
-        </div>
-      </section>
-      <section className="bg-secondary/60 py-24">
-        <div className="container-x">
-          <SectionHeading eyebrow="Our Team" title="The People Behind Sadiq Associates" />
-          <Team />
         </div>
       </section>
       <section className="py-24">

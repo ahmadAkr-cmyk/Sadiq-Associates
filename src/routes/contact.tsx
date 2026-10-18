@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { FaClock, FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 import { images, pageTitle, siteConfig } from "@/config/siteConfig";
 import { IconBadge, Reveal, SectionHeading } from "@/components/site/Reveal";
 import { MapEmbed, PageBanner } from "@/components/site/Blocks";
@@ -21,14 +21,14 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const cards = [
-    { icon: MapPin, title: "Address", body: <>{siteConfig.address.line1}<br />{siteConfig.address.line2}</> },
-    { icon: Phone, title: "Phone", body: <>{siteConfig.phones.map((p) => <a key={p.tel} href={`tel:${p.tel}`} className="block hover:text-gold">{p.label}</a>)}</> },
-    { icon: Mail, title: "Email", body: <a href={`mailto:${siteConfig.email}`} className="hover:text-gold">{siteConfig.email}</a> },
-    { icon: Clock, title: "Office Hours", body: siteConfig.officeHours },
+    { icon: FaLocationDot, title: "Address", body: <>{siteConfig.address.line1}<br />{siteConfig.address.line2}</> },
+    { icon: FaPhone, title: "Phone", body: <>{siteConfig.phones.map((p) => <a key={p.tel} href={`tel:${p.tel}`} className="block hover:text-gold">{p.label}</a>)}</> },
+    { icon: FaEnvelope, title: "Email", body: <a href={`mailto:${siteConfig.email}`} className="hover:text-gold">{siteConfig.email}</a> },
+    { icon: FaClock, title: "Office Hours", body: siteConfig.officeHours },
   ];
   return (
     <>
-      <PageBanner title="Contact Us" crumbs={[{ label: "Contact Us" }]} image={images.hero2} />
+      <PageBanner title="Contact Us" image={images.hero2} />
       <section className="py-24">
         <div className="container-x">
           <SectionHeading eyebrow="Get in Touch" title="Contact Our Team or Schedule a Consultation" text="Share your audit, accounting, tax, compliance, company formation or advisory requirements and our team will get back to you." />

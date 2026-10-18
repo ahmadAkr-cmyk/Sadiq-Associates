@@ -1,7 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ChevronRight, Mail, MapPin, Phone, X } from "lucide-react";
+import {
+  FaArrowRight,
+  FaChevronRight,
+  FaEnvelope,
+  FaLocationDot,
+  FaPhone,
+  FaXmark,
+} from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { pageTitle, services, siteConfig } from "@/config/siteConfig";
 import { IconBadge, Reveal } from "@/components/site/Reveal";
@@ -36,7 +43,7 @@ function ServiceDetail() {
   const [light, setLight] = useState<string | null>(null);
   return (
     <>
-      <PageBanner title={s.title} crumbs={[{ label: "Services", to: "/services" }, { label: s.title }]} image={s.image} />
+      <PageBanner title={s.title} image={s.image} />
       <section className="py-20">
         <div className="container-x grid gap-12 lg:grid-cols-[1fr_360px]">
           <div>
@@ -64,7 +71,7 @@ function ServiceDetail() {
                 <p className="eyebrow">Get Started</p>
                 <h3 className="mt-2 text-3xl font-semibold text-navy-foreground">Need help with this service? Request now</h3>
               </div>
-              <Button asChild variant="gold" size="xl"><Link to="/contact">Request Now <ArrowRight /></Link></Button>
+              <Button asChild variant="gold" size="xl"><Link to="/contact">Request Now <FaArrowRight className="h-3.5 w-3.5" /></Link></Button>
             </Reveal>
           </div>
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
@@ -73,7 +80,7 @@ function ServiceDetail() {
               <div className="mt-4 space-y-1">
                 {services.map((x) => (
                   <Link key={x.slug} to="/services/$slug" params={{ slug: x.slug }} className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors ${x.slug === s.slug ? "bg-navy text-navy-foreground" : "text-foreground/80 hover:bg-gold-soft hover:text-navy"}`}>
-                    {x.title} <ChevronRight className="h-4 w-4 text-gold" />
+                    {x.title} <FaChevronRight className="h-3 w-3 text-gold" />
                   </Link>
                 ))}
               </div>
@@ -81,11 +88,11 @@ function ServiceDetail() {
             <div className="rounded-3xl bg-navy-gradient p-6 text-navy-foreground/85">
               <h3 className="text-2xl font-semibold text-navy-foreground">Contact Us</h3>
               <ul className="mt-4 space-y-3 text-sm">
-                <li className="flex gap-3"><MapPin className="h-4 w-4 shrink-0 text-gold" />{siteConfig.address.line1}, {siteConfig.address.line2}</li>
-                {siteConfig.phones.map((p) => <li key={p.tel} className="flex gap-3"><Phone className="h-4 w-4 text-gold" /><a href={`tel:${p.tel}`} className="hover:text-gold">{p.label}</a></li>)}
-                <li className="flex gap-3"><Mail className="h-4 w-4 text-gold" /><a href={`mailto:${siteConfig.email}`} className="hover:text-gold">{siteConfig.email}</a></li>
+                <li className="flex gap-3"><FaLocationDot className="h-4 w-4 shrink-0 text-gold mt-0.5" />{siteConfig.address.line1}, {siteConfig.address.line2}</li>
+                {siteConfig.phones.map((p) => <li key={p.tel} className="flex gap-3"><FaPhone className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" /><a href={`tel:${p.tel}`} className="hover:text-gold">{p.label}</a></li>)}
+                <li className="flex gap-3"><FaEnvelope className="h-3.5 w-3.5 text-gold shrink-0 mt-0.5" /><a href={`mailto:${siteConfig.email}`} className="hover:text-gold">{siteConfig.email}</a></li>
               </ul>
-              <Button asChild variant="gold" size="xl" className="mt-6 w-full"><Link to="/contact">Quick Consultation <ArrowRight /></Link></Button>
+              <Button asChild variant="gold" size="xl" className="mt-6 w-full"><Link to="/contact">Quick Consultation <FaArrowRight className="h-3.5 w-3.5" /></Link></Button>
             </div>
           </aside>
         </div>
@@ -94,7 +101,7 @@ function ServiceDetail() {
       <AnimatePresence>
         {light && (
           <motion.div className="fixed inset-0 z-[80] flex items-center justify-center bg-navy-deep/90 p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setLight(null)}>
-            <button aria-label="Close" className="absolute right-6 top-6 text-navy-foreground"><X className="h-8 w-8" /></button>
+            <button aria-label="Close" className="absolute right-6 top-6 text-navy-foreground"><FaXmark className="h-6 w-6" /></button>
             <motion.img src={light} alt="" className="max-h-[85vh] max-w-full rounded-2xl" initial={{ scale: 0.9 }} animate={{ scale: 1 }} />
           </motion.div>
         )}

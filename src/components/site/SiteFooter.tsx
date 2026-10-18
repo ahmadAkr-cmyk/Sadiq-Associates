@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { FaClock, FaEnvelope, FaLocationDot, FaPhone } from "react-icons/fa6";
 import { services, siteConfig } from "@/config/siteConfig";
 import logo from "@/assets/logo.png";
 
@@ -37,10 +37,10 @@ export function SiteFooter() {
           <h3 className="text-xl font-semibold text-navy-foreground">Contact</h3>
           <div className="mt-2 h-px w-10 bg-gold" />
           <ul className="mt-5 space-y-4 text-sm">
-            <li className="flex gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" /><span>{siteConfig.address.line1}<br />{siteConfig.address.line2}</span></li>
-            <li className="flex gap-3"><Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" /><span className="flex flex-col">{siteConfig.phones.map((p) => <a key={p.tel} href={`tel:${p.tel}`} className="hover:text-gold">{p.label}</a>)}</span></li>
-            <li className="flex gap-3"><Mail className="mt-0.5 h-4 w-4 shrink-0 text-gold" /><a href={`mailto:${siteConfig.email}`} className="hover:text-gold">{siteConfig.email}</a></li>
-            <li className="flex gap-3"><Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" /><span>{siteConfig.officeHours}</span></li>
+            <li className="flex gap-3"><FaLocationDot className="mt-1 h-3.5 w-3.5 shrink-0 text-gold" /><span>{siteConfig.address.line1}<br />{siteConfig.address.line2}</span></li>
+            <li className="flex gap-3"><FaPhone className="mt-1 h-3.5 w-3.5 shrink-0 text-gold" /><span className="flex flex-col">{siteConfig.phones.map((p) => <a key={p.tel} href={`tel:${p.tel}`} className="hover:text-gold">{p.label}</a>)}</span></li>
+            <li className="flex gap-3"><FaEnvelope className="mt-1 h-3.5 w-3.5 shrink-0 text-gold" /><a href={`mailto:${siteConfig.email}`} className="hover:text-gold">{siteConfig.email}</a></li>
+            <li className="flex gap-3"><FaClock className="mt-1 h-3.5 w-3.5 shrink-0 text-gold" /><span>{siteConfig.officeHours}</span></li>
           </ul>
         </div>
       </div>

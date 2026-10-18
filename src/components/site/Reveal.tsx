@@ -39,11 +39,21 @@ export function SectionHeading({
   );
 }
 
-export function IconBadge({ icon: Icon, tone = "light" }: { icon: React.ComponentType<{ className?: string; strokeWidth?: number }>; size?: "sm" | "md" | "lg"; tone?: "light" | "dark" }) {
+export function IconBadge({
+  icon: Icon,
+  size = "md",
+  tone = "light",
+}: {
+  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  size?: "sm" | "md" | "lg";
+  tone?: "light" | "dark";
+}) {
   const base = tone === "dark" ? "bg-gold/15 text-gold" : "bg-gold/10 text-gold";
+  const dims = size === "lg" ? "h-16 w-16" : size === "sm" ? "h-10 w-10" : "h-14 w-14";
+  const ic = size === "lg" ? "h-7 w-7" : size === "sm" ? "h-4 w-4" : "h-6 w-6";
   return (
-    <span className={`inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-[14px] ${base} transition-colors duration-300 group-hover:bg-gold group-hover:text-primary-foreground`}>
-      <Icon className="h-6 w-6" strokeWidth={1.5} />
+    <span className={`inline-flex ${dims} shrink-0 items-center justify-center rounded-[14px] ${base} shadow-xs transition-all duration-300 group-hover:bg-gold group-hover:text-primary-foreground group-hover:shadow-md`}>
+      <Icon className={ic} />
     </span>
   );
 }

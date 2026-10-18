@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp, MessageCircle, Phone } from "lucide-react";
+import { FaArrowUp, FaPhone, FaWhatsapp } from "react-icons/fa6";
 import { siteConfig } from "@/config/siteConfig";
 import mark from "@/assets/logo-mark.png";
 
@@ -18,18 +18,18 @@ export function FloatingActions() {
           <motion.button
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-navy text-navy-foreground shadow-soft"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-navy text-navy-foreground shadow-soft hover:bg-gold transition-colors"
             aria-label="Back to top"
           >
-            <ArrowUp className="h-5 w-5" />
+            <FaArrowUp className="h-4 w-4" />
           </motion.button>
         )}
       </AnimatePresence>
-      <a href={`tel:${siteConfig.phones[0]!.tel}`} aria-label="Call us" className="flex items-center justify-center rounded-full bg-navy p-3.5 text-navy-foreground shadow-soft">
-        <Phone className="h-6 w-6" />
+      <a href={`tel:${siteConfig.phones[0]!.tel}`} aria-label="Call us" className="flex items-center justify-center rounded-full bg-navy p-3.5 text-navy-foreground shadow-soft hover:bg-gold transition-colors">
+        <FaPhone className="h-5 w-5" />
       </a>
-      <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="flex items-center justify-center rounded-full bg-primary p-3.5 text-primary-foreground shadow-soft">
-        <MessageCircle className="h-6 w-6" />
+      <a href={siteConfig.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="flex items-center justify-center rounded-full bg-[#25D366] p-3.5 text-white shadow-soft hover:scale-105 transition-transform">
+        <FaWhatsapp className="h-5 w-5" />
       </a>
     </div>
   );

@@ -3,7 +3,15 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle2, FileText, Loader2, UploadCloud, X, AlertCircle } from "lucide-react";
+import {
+  FaArrowRight,
+  FaCircleCheck,
+  FaCircleExclamation,
+  FaCloudArrowUp,
+  FaFileLines,
+  FaSpinner,
+  FaXmark,
+} from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -101,7 +109,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         {status === "success" ? (
           <motion.div key="ok" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center py-14 text-center">
             <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", delay: 0.1 }} className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-soft text-gold">
-              <CheckCircle2 className="h-11 w-11" />
+              <FaCircleCheck className="h-11 w-11" />
             </motion.div>
             <h3 className="mt-6 text-3xl font-semibold text-navy">Message sent</h3>
             <p className="mt-2 text-muted-foreground">Thank you. Our team will contact you shortly.</p>
@@ -135,7 +143,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
               role="button" tabIndex={0}
               className={`flex cursor-pointer flex-col items-center rounded-xl border-2 border-dashed px-4 py-6 text-center transition-colors ${drag ? "border-gold bg-gold-soft" : "border-border bg-card/60 hover:border-gold"}`}
             >
-              <UploadCloud className="h-7 w-7 text-gold" />
+              <FaCloudArrowUp className="h-7 w-7 text-gold" />
               <p className="mt-2 text-sm font-semibold text-navy">Attach files (optional)</p>
               <p className="text-xs text-muted-foreground">Drag & drop or click · PDF, DOC, DOCX, XLS, XLSX, JPG, PNG · max 10 MB · up to 3 files</p>
               <input ref={inputRef} type="file" multiple hidden accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" onChange={(e) => { addFiles(e.target.files); e.target.value = ""; }} />
@@ -145,18 +153,18 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
               <div className="flex flex-wrap gap-2">
                 {files.map((f, i) => (
                   <span key={i} className="flex items-center gap-2 rounded-full bg-gold-soft px-3 py-1.5 text-xs text-navy">
-                    {f.state === "uploading" ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : f.state === "done" ? <CheckCircle2 className="h-3.5 w-3.5 text-gold" /> : <FileText className="h-3.5 w-3.5" />}
+                    {f.state === "uploading" ? <FaSpinner className="h-3.5 w-3.5 animate-spin" /> : f.state === "done" ? <FaCircleCheck className="h-3.5 w-3.5 text-gold" /> : <FaFileLines className="h-3.5 w-3.5" />}
                     {f.file.name} · {(f.file.size / 1024 / 1024).toFixed(1)} MB
-                    {status !== "sending" && <button type="button" aria-label={`Remove ${f.file.name}`} onClick={() => setFiles(files.filter((_, j) => j !== i))}><X className="h-3.5 w-3.5" /></button>}
+                    {status !== "sending" && <button type="button" aria-label={`Remove ${f.file.name}`} onClick={() => setFiles(files.filter((_, j) => j !== i))}><FaXmark className="h-3.5 w-3.5" /></button>}
                   </span>
                 ))}
               </div>
             )}
             {status === "error" && (
-              <p className="flex items-center gap-2 rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"><AlertCircle className="h-4 w-4" /> {errMsg}</p>
+              <p className="flex items-center gap-2 rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"><FaCircleExclamation className="h-4 w-4" /> {errMsg}</p>
             )}
             <Button type="submit" variant="gold" size="xl" disabled={status === "sending"} className="w-full md:w-auto">
-              {status === "sending" ? <><Loader2 className="animate-spin" /> Sending…</> : <>Send Request <ArrowRight /></>}
+              {status === "sending" ? <><FaSpinner className="animate-spin" /> Sending…</> : <>Send Request <FaArrowRight className="h-3.5 w-3.5" /></>}
             </Button>
           </motion.form>
         )}

@@ -1,6 +1,8 @@
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
+import hero1 from "@/assets/hero-1.png";
+import hero2 from "@/assets/hero-2.png";
+import hero3 from "@/assets/hero-3.png";
+import hero1Financial from "@/assets/hero-1-financial.png";
+import aboutOffice from "@/assets/about-office.png";
 import cta from "@/assets/cta.jpg";
 import about from "@/assets/about.jpg";
 import formation from "@/assets/svc-formation.jpg";
@@ -16,19 +18,19 @@ import extra1 from "@/assets/extra-1.jpg";
 import extra2 from "@/assets/extra-2.jpg";
 import extra3 from "@/assets/extra-3.jpg";
 import {
-  Building2,
-  ShieldCheck,
-  Calculator,
-  Receipt,
-  ClipboardCheck,
-  TrendingUp,
-  Briefcase,
-  MonitorCog,
-  Scale,
-  type LucideIcon,
-} from "lucide-react";
+  FaBuildingColumns,
+  FaShieldHalved,
+  FaCalculator,
+  FaFileInvoiceDollar,
+  FaClipboardCheck,
+  FaChartLine,
+  FaBriefcase,
+  FaLaptopCode,
+  FaScaleBalanced,
+} from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
-export const images = { hero1, hero2, hero3, cta, about, formation, audit, accounting, tax, compliance, financial, management, it, advisory, extra1, extra2, extra3, consulting: about };
+export const images = { hero1, hero2, hero3, hero1Financial, aboutOffice, cta, about, formation, audit, accounting, tax, compliance, financial, management, it, advisory, extra1, extra2, extra3, consulting: about };
 
 export const siteConfig = {
   name: "Sadiq Associates",
@@ -77,7 +79,7 @@ export type Service = {
   title: string;
   short: string;
   description: string;
-  icon: LucideIcon;
+  icon: IconType;
   image: string;
   gallery: string[];
   includes: string[];
@@ -90,7 +92,7 @@ export const services: Service[] = [
     short: "Set up your legal entity the right way.",
     description:
       "Complete assistance in setting up a new legal entity and handling the regulatory requirements of forming a company.",
-    icon: Building2,
+    icon: FaBuildingColumns,
     image: formation,
     gallery: [formation, tax, extra1],
     includes: [
@@ -108,7 +110,7 @@ export const services: Service[] = [
     short: "Independent audits you can rely on.",
     description:
       "Independent audit services that improve financial transparency, strengthen internal controls and support dependable financial reporting.",
-    icon: ShieldCheck,
+    icon: FaShieldHalved,
     image: audit,
     gallery: [audit, compliance, extra2],
     includes: [
@@ -125,7 +127,7 @@ export const services: Service[] = [
     short: "Accurate books, clear performance.",
     description:
       "Accurate and up-to-date accounting that shows clearly how your business is performing, including its strengths and weaknesses.",
-    icon: Calculator,
+    icon: FaCalculator,
     image: accounting,
     gallery: [accounting, financial, extra3],
     includes: [
@@ -143,7 +145,7 @@ export const services: Service[] = [
     short: "Income and sales tax, handled properly.",
     description:
       "Income tax and sales tax guidance that helps individuals and businesses meet their obligations and manage tax matters effectively.",
-    icon: Receipt,
+    icon: FaFileInvoiceDollar,
     image: tax,
     gallery: [tax, management, extra1],
     includes: [
@@ -162,7 +164,7 @@ export const services: Service[] = [
     short: "Stay on the right side of every rule.",
     description:
       "Practical compliance support that helps your organisation meet regulatory, reporting and contractual requirements.",
-    icon: ClipboardCheck,
+    icon: FaClipboardCheck,
     image: compliance,
     gallery: [compliance, it, extra2],
     includes: [
@@ -180,7 +182,7 @@ export const services: Service[] = [
     short: "Insight for sound financial decisions.",
     description:
       "Clear financial insight and structured advice that helps management evaluate performance, improve controls and make sound decisions.",
-    icon: TrendingUp,
+    icon: FaChartLine,
     image: financial,
     gallery: [financial, advisory, extra3],
     includes: [
@@ -198,7 +200,7 @@ export const services: Service[] = [
     short: "Better systems, policies and processes.",
     description:
       "Management solutions that improve organisational systems, internal processes, policies and operational effectiveness.",
-    icon: Briefcase,
+    icon: FaBriefcase,
     image: management,
     gallery: [management, formation, extra1],
     includes: [
@@ -217,7 +219,7 @@ export const services: Service[] = [
     short: "The right technology at the right cost.",
     description:
       "Technology reviews that help businesses choose and implement suitable systems, considering compatibility, cost, efficiency and staff needs.",
-    icon: MonitorCog,
+    icon: FaLaptopCode,
     image: it,
     gallery: [it, audit, extra2],
     includes: [
@@ -236,7 +238,7 @@ export const services: Service[] = [
     short: "Clarity on agreements, law and regulation.",
     description:
       "Professional advice that helps businesses understand commercial agreements, regulatory responsibilities and important corporate matters.",
-    icon: Scale,
+    icon: FaScaleBalanced,
     image: advisory,
     gallery: [advisory, accounting, extra3],
     includes: [

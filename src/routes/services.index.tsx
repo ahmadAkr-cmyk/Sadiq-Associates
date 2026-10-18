@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services/")({
 function ServicesPage() {
   return (
     <>
-      <PageBanner title="Services" crumbs={[{ label: "Services" }]} image={images.consulting} />
+      <PageBanner title="Services" image={images.consulting} />
       <section className="py-24">
         <div className="container-x">
           <SectionHeading eyebrow="What We Offer" title="Professional Services Built Around Your Business" text="From company formation and accounting to audit, tax and business advisory, we provide practical solutions that help organisations stay compliant, improve financial control and make confident decisions." />

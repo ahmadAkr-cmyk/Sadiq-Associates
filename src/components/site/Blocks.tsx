@@ -1,29 +1,32 @@
 import { Link } from "@tanstack/react-router";
 import { motion, useInView, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, ChevronRight, Phone } from "lucide-react";
+import { FaArrowRight, FaPhone } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { images, services, siteConfig, type Service } from "@/config/siteConfig";
 import { IconBadge, Reveal } from "./Reveal";
 
-export function PageBanner({ title, crumbs, image = images.hero3 }: { title: string; crumbs: { label: string; to?: string }[]; image?: string }) {
+export function PageBanner({
+  title,
+  image = images.hero3,
+}: {
+  title: string;
+  crumbs?: { label: string; to?: string }[];
+  image?: string;
+}) {
   return (
     <section className="relative overflow-hidden">
       <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover" width={1920} height={1088} />
-      <div className="absolute inset-0 bg-black/40" />
-      <div className="container-x relative py-24 md:py-32">
-        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-4xl font-semibold text-white [text-shadow:0_1px_8px_rgb(0_0_0/0.3)] md:text-5xl">
+      <div className="absolute inset-0 bg-black/45" />
+      <div className="container-x relative py-20 md:py-28">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-4xl font-semibold text-white [text-shadow:0_1px_8px_rgb(0_0_0/0.3)] md:text-5xl"
+        >
           {title}
         </motion.h1>
-        <nav aria-label="Breadcrumb" className="mt-5 flex flex-wrap items-center gap-2 text-sm text-white/90">
-          <Link to="/" className="hover:text-white">Home</Link>
-          {crumbs.map((c) => (
-            <span key={c.label} className="flex items-center gap-2">
-              <ChevronRight className="h-4 w-4 text-white/70" />
-              {c.to ? <Link to={c.to} className="hover:text-white">{c.label}</Link> : <span className="font-semibold text-white">{c.label}</span>}
-            </span>
-          ))}
-        </nav>
       </div>
     </section>
   );
@@ -35,13 +38,13 @@ export function ServiceCard({ s, i = 0 }: { s: Service; i?: number }) {
       <Link to="/services/$slug" params={{ slug: s.slug }} className="group flex h-full flex-col overflow-hidden card-premium card-hover">
         <div className="relative aspect-[4/3] overflow-hidden">
           <img src={s.image} alt={`${s.title} at Sadiq Associates`} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]" width={1024} height={768} />
-                  </div>
+        </div>
         <div className="relative flex flex-1 flex-col px-7 pb-7 pt-11">
           <div className="absolute -top-7 left-7"><IconBadge icon={s.icon} /></div>
           <h3 className="text-2xl font-semibold text-navy">{s.title}</h3>
           <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
           <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-navy">
-            Let's start <ArrowRight className="h-4 w-4 text-gold transition-transform transition-transform duration-300 group-hover:translate-x-1" />
+            Let's start <FaArrowRight className="h-3.5 w-3.5 text-gold transition-transform duration-300 group-hover:translate-x-1" />
           </span>
         </div>
       </Link>
@@ -69,7 +72,6 @@ export function CheckItem({ children, i = 0, light = false }: { children: React.
     </Reveal>
   );
 }
-export { Check };
 
 export function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -104,8 +106,8 @@ export function CtaBanner() {
           <p className="eyebrow text-white/85">Chartered Firm</p>
           <h2 className="mx-auto mt-4 max-w-3xl text-3xl font-semibold text-white md:text-5xl">Ready to speak with a professional?</h2>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button asChild variant="gold" size="xl"><Link to="/contact">Book a Consultation <ArrowRight /></Link></Button>
-            <Button asChild variant="outlineLight" size="xl"><a href={`tel:${siteConfig.phones[0]!.tel}`}><Phone /> Call Now</a></Button>
+            <Button asChild variant="gold" size="xl"><Link to="/contact">Book a Consultation <FaArrowRight className="h-3.5 w-3.5" /></Link></Button>
+            <Button asChild variant="outlineLight" size="xl"><a href={`tel:${siteConfig.phones[0]!.tel}`} className="flex items-center gap-2"><FaPhone className="h-3.5 w-3.5" /> Call Now</a></Button>
           </div>
         </Reveal>
       </div>

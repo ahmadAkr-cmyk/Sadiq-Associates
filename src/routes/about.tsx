@@ -1,5 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { BarChart3, Cog, HeartHandshake, Landmark, ShieldCheck, Sparkles, UserRound, Users } from "lucide-react";
+import {
+  FaAward,
+  FaBuildingColumns,
+  FaChartLine,
+  FaGears,
+  FaHandshake,
+  FaShieldHalved,
+  FaUserTie,
+} from "react-icons/fa6";
 import { images, pageTitle, siteConfig } from "@/config/siteConfig";
 import { IconBadge, Reveal, SectionHeading } from "@/components/site/Reveal";
 import { CtaBanner, PageBanner, SkillBar } from "@/components/site/Blocks";
@@ -21,14 +29,14 @@ export const Route = createFileRoute("/about")({
 
 function AboutPage() {
   const intro = [
-    { icon: BarChart3, title: "Business Growth", text: "Financial clarity that helps you plan and grow with confidence." },
-    { icon: Cog, title: "Stronger Business Processes", text: "Systems, controls and policies that make your organisation run smoothly." },
-    { icon: Landmark, title: "Financial Management", text: "Reliable reporting and advice for sound day-to-day decisions." },
+    { icon: FaChartLine, title: "Business Growth", text: "Financial clarity that helps you plan and grow with confidence." },
+    { icon: FaGears, title: "Stronger Business Processes", text: "Systems, controls and policies that make your organisation run smoothly." },
+    { icon: FaBuildingColumns, title: "Financial Management", text: "Reliable reporting and advice for sound day-to-day decisions." },
   ];
   return (
     <>
-      <PageBanner title="About Us" crumbs={[{ label: "About Us" }]} image={images.hero1} />
-      <section className="relative z-10 -mt-14">
+      <PageBanner title="About Us" image={images.hero1} />
+      <section className="pt-20 pb-8 bg-background">
         <div className="container-x grid gap-6 md:grid-cols-3">
           {intro.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.1}>
@@ -44,7 +52,6 @@ function AboutPage() {
       <section className="py-24">
         <div className="container-x grid items-center gap-16 lg:grid-cols-2">
           <Reveal className="relative">
-            <div className="absolute -left-5 -top-5 h-full w-full rounded-3xl border-2 border-gold" />
             <img src={images.consulting} alt="Sadiq Associates advisory session" loading="lazy" className="relative aspect-[4/3] w-full rounded-3xl object-cover shadow-lift" width={1024} height={768} />
           </Reveal>
           <div>
@@ -59,10 +66,10 @@ function AboutPage() {
         <div className="container-x">
           <SectionHeading eyebrow="Why Choose Us" title="What Sets Us Apart" />
           <WhyChoose items={[
-            { icon: ShieldCheck, title: "Trusted Expertise", text: "Professional standards applied to every engagement." },
-            { icon: Users, title: "Experienced Team", text: "People who understand local regulation and business realities." },
-            { icon: HeartHandshake, title: "Client-Focused Service", text: "Responsive, clear and personal support." },
-            { icon: Sparkles, title: "Complete Business Support", text: "Audit, accounting, tax, compliance and advisory together." },
+            { icon: FaShieldHalved, title: "Trusted Expertise", text: "Professional standards applied to every engagement." },
+            { icon: FaUserTie, title: "Experienced Team", text: "People who understand local regulation and business realities." },
+            { icon: FaHandshake, title: "Client-Focused Service", text: "Responsive, clear and personal support." },
+            { icon: FaAward, title: "Complete Business Support", text: "Audit, accounting, tax, compliance and advisory together." },
           ]} />
         </div>
       </section>
@@ -71,7 +78,7 @@ function AboutPage() {
           <Reveal>
             {/* TODO(owner): replace with a real portrait of Muhammad Sadiq */}
             <div className="flex aspect-[4/5] items-center justify-center rounded-3xl bg-navy-gradient shadow-lift">
-              <UserRound className="h-32 w-32 text-navy-foreground/25" />
+              <FaUserTie className="h-32 w-32 text-navy-foreground/25" />
             </div>
           </Reveal>
           <Reveal delay={0.1}>
